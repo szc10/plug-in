@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="libs/css/cssBox.css">
+    <title>移动选项卡</title>
+    <style media="screen">
+        input {
+            border: solid 1px rgb(230, 230, 230);
+            padding: 5px 5px 5px 5px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input placeholder="请选择默认样式" onclick="defaultSelect(this)" readonly="readonly" />
+    <br/>
+    <input placeholder="请选择树形样式" onclick="treeSelect(this)" readonly="readonly" />
+
+</body>
+<script src="libs/js/jsBox.js"></script>
+<script type="text/javascript" src="mobileSelect.js"></script>
+<script>
+    /**
+     * [data 移动默认选项卡]
+     * @type {dom}
+     */
+    function defaultSelect(input) {
+        var data = [];
+        for (var i = 0; i < 20; i++) {
+            data.push({
+                value: "oo" + i, //选项的键值
+                text: "选项" + i //选项的提示语
+            });
+        }
+        //input值为点击的input元素,data为传入的渲染的数据源,then其中的回调在触发值变化的回调
+        MobileSelect.tSelect(input, data).then(function(dom) {
+            //dom为捕获的元素,是点击的input的指针
+            console.log(dom.dataset.val); //该值为选择相应的选项的键值
+            console.log(dom.value); //该值为选择相应的选项的显示语
+        });
+    }
+
+    /**
+     * [data 移动二级树形选项卡]
+     * @type {dom}
+     */
+    function treeSelect(input) {
+        var data = [];
+        for (var i = 0; i < 20; i++) {
+            data.push({
+                value: "oo" + i, //一级选项的键值
+                text: "选项" + i, //一级选项的提示语
+                child: [{ //一级选项的二级选项内容
+                    value: 123, //含义与一级一样
+                    text: 1234 + "选项" + i //含义与一级一样
+                }, {
+                    value: 13,
+                    text: 1234 + "选项" + i
+                }]
+            });
+        }
+        //input值为点击的input元素,data为传入的渲染的数据源,then其中的回调在,触发值变化的回调
+        MobileSelect.treeSelect(input, data).then(function(dom) {
+            //dom为捕获的元素,是点击的input的指针
+            console.log(dom.value); //该值为选择相应的选项的显示语
+            console.log(dom.dataset.val1 + " " + dom.dataset.val2); //dom.dataset.val1 为一级选项的键值,dom.dataset.val2 为二级选项的键值
+        });
+    }
+</script>
+
+</html>
