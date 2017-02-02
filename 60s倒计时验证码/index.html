@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="yzm.css">
+  </head>
+  <body>
+    <button class="yzm" id="yzf">点击获取验证码</button>
+  </body>
+  <script type="text/javascript" src = "yzm.js"></script>
+  <script type="text/javascript">
+      var yzf  = document.getElementById('yzf');
+      /**
+       * 创建时候的参数,第一个参数是空间UI的dom指针,后面一个是控件读秒数(单位是秒),可以省略,默认为60s
+       */
+      Yanzhenma(yzf,30).click(function(){
+        //传入点击验证码控件点击时候的动作,也可以不传入
+      }).complete(function(){
+        //传入点击验证码控件读秒完成后的动作,也可以不传入
+      });
+  </script>
+</html>
