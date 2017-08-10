@@ -46,9 +46,10 @@ var MobileSelect = (function() {
         J(_select_panel).click(function(ev) {
             var target = ev.target;
             _select_input.value = target.innerHTML;
+            console.log(_select_input.value);
             _select_input.dataset.val = target.dataset.val;
             closePanel();
-            _select_callFn.call(_select_panel, target);
+            _select_callFn.call(_select_panel, _select_input);
             stopBubble(ev);
         });
         return {
@@ -66,6 +67,7 @@ var MobileSelect = (function() {
                 model_type = this;
             },
             close: function() {
+                J(_select_panel_wrapper).addClass('_no_display');
                 J(_select_context).addClass('_no_display');
             }
         }
